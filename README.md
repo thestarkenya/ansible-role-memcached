@@ -1,53 +1,65 @@
 # Ansible Role: Memcached
 
-[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-memcached.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-memcached)
+[![Build Status](https://img.shields.io/travis/rwanyoike/ansible-role-memcached.svg)](https://travis-ci.org/rwanyoike/ansible-role-memcached) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/rwanyoike/ansible-role-memcached/master/LICENSE)
 
-An Ansible Role that installs Memcached on RedHat/CentOS or Debian/Ubuntu Linux.
+Installs and configures Memcached on RHEL/CentOS ~~or Debian/Ubuntu~~.
 
 ## Requirements
 
-None.
+None
 
 ## Role Variables
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-    memcached_user: memcache
+```yaml
+# Listen on TCP port <num>.
+memcached_port: 11211
 
-The user under which the Memcached daemon will run.
+# Assume the identity of <username>.
+# memcached_user: memcached
 
-    memcached_port: 11211
-    memcached_listen_ip: 127.0.0.1
+# Use <num> MB memory max to use for object storage.
+memcached_cachesize: 64
 
-The port and IP address (127.0.0.1 for localhost) on which Memcached will listen for requests.
+# Use <num> max simultaneous connections.
+memcached_maxconn: 1024
 
-    memcached_memory_limit: 64
-    memcached_connections: 1024
-
-Memcached limits. The maximum amount of RAM `memcached` will consume (64MB is the default), and the maximum number of simultaneous connections memcached will handle.
-
-    memcached_log_file: /var/log/memcached.log
-
-The location of the memcached log file.
-
-    memcached_log_verbosity: ""
-
-Normally memcached does not log anything. Change to "-v" to enable logging or to "-vv" for debug logging.
+# Extra options.
+memcached_options: []
+```
 
 ## Dependencies
 
-None.
+None
 
 ## Example Playbook
 
-    - hosts: cache
-      roles:
-        - { role: geerlingguy.memcached }
+```yaml
+- hosts: servers
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+    - role: rwanyoike.memcached
+```
+
+Inside `vars/main.yml`:
+
+```yaml
+memcached_options:
+  - -l 127.0.0.1
+  - -v >> /var/log/memcached.log
+
+# ... etc ...
+```
 
 ## License
 
-MIT / BSD
+MIT
 
 ## Author Information
 
-This role was created in 2014 by [Jeff Geerling](http://jeffgeerling.com/), author of [Ansible for DevOps](http://ansiblefordevops.com/).
+- This role was created in 2014 by [Jeff Geerling](http://jeffgeerling.com/), author of [Ansible for DevOps](http://ansiblefordevops.com/).
+- This role was forked in 2015 by [Raymond Wanyoike](https://github.com/rwanyoike).
