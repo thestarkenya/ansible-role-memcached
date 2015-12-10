@@ -1,9 +1,15 @@
 ---
+# Listen on TCP port <num>.
 memcached_port: 11211
-memcached_listen_ip: 127.0.0.1
 
-memcached_memory_limit: 64
-memcached_connections: 1024
+# Assume the identity of <username>.
+# memcached_user: memcached
 
-memcached_log_file: /var/log/memcached.log
-memcached_log_verbosity: ""
+# Use <num> MB memory max to use for object storage.
+memcached_cachesize: 64
+
+# Use <num> max simultaneous connections.
+memcached_maxconn: 1024
+
+# Extra options.
+memcached_options: []
