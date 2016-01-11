@@ -14,19 +14,13 @@ Available variables are listed below, along with default values (see `defaults/m
 
 ```yaml
 # Listen on TCP port <num>.
-memcached_port: 11211
-
-# Assume the identity of <username>.
-# memcached_user: memcached
-
+memcached_config_port: 11211
 # Use <num> MB memory max to use for object storage.
-memcached_cachesize: 64
-
+memcached_config_cachesize: 64
 # Use <num> max simultaneous connections.
-memcached_maxconn: 1024
-
+memcached_config_maxconn: 1024
 # Extra options.
-memcached_options: []
+memcached_config_options: []
 ```
 
 ## Dependencies
@@ -48,7 +42,7 @@ None
 Inside `vars/main.yml`:
 
 ```yaml
-memcached_options:
+memcached_config_options:
   - -l 127.0.0.1
   - -v >> /var/log/memcached.log
 
