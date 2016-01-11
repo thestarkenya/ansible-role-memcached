@@ -6,20 +6,8 @@
   set_fact: memcached_packages={{ __memcached_packages | list }}
   when: memcached_packages is not defined
 
-- name: Define memcached_user.
-  set_fact: memcached_user={{ __memcached_user }}
-  when: memcached_user is not defined
-
 - include: setup-RedHat.yml
   when: ansible_os_family == "RedHat"
-
-- name: Copy Memcached config.
-  template:
-    src: memcached-{{ ansible_os_family }}.conf.j2
-    dest: "{{ memcached_config_file }}"
-    owner: root
-    group: root
-  notify: restart memcached
 
 - name: Start and enable Memcached.
   service: name=memcached state=started enabled=yes
