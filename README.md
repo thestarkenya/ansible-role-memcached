@@ -13,6 +13,7 @@ None
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
 ```yaml
+memcached_config_use_template: true
 # Listen on TCP port <num>.
 memcached_config_port: 11211
 # Use <num> MB memory max to use for object storage.
