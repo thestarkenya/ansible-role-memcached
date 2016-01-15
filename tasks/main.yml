@@ -3,10 +3,13 @@
   include_vars: "{{ ansible_os_family }}.yml"
 
 - name: Define memcached_packages.
-  set_fact: memcached_packages={{ __memcached_packages | list }}
+  set_fact: memcached_packages="{{ __memcached_packages | list }}"
   when: memcached_packages is not defined
 
 - include: setup-RedHat.yml
+  when: ansible_os_family == "RedHat"
+
+- include: configure-RedHat.yml
   when: ansible_os_family == "RedHat"
 
 - name: Start and enable Memcached.

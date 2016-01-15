@@ -1,0 +1,9 @@
+---
+- name: Copy Memcached config.
+  template:
+    src: memcached.j2
+    dest: /etc/sysconfig/memcached
+    owner: root
+    group: root
+  notify: restart memcached
+  when: memcached_config_use_template
