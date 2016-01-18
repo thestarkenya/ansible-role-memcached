@@ -1,8 +1,8 @@
 ---
-- name: Define memcached_enablerepo.
+- name: define memcached_enablerepo
   set_fact: memcached_enablerepo={{ __memcached_enablerepo }}
   when: memcached_enablerepo is not defined
 
-- name: Install Memcached packages.
+- name: install memcached packages
   yum: name={{ item }} state=present enablerepo={{ memcached_enablerepo }}
   with_items: memcached_packages

@@ -1,15 +1,17 @@
-# Listen on TCP port <num>, the default is port 11211.
+# Memcached configuration
+
+# Listen on TCP port <num>, the default is port 11211
 PORT="{{ memcached_config_port }}"
 
-# Assume the identity of <username> (only when run as root).
+# Assume the identity of <username> (only when run as root)
 USER="memcached"
 
-# Use <num> max simultaneous connections; the default is 1024.
+# Use <num> max simultaneous connections; the default is 1024
 MAXCONN="{{ memcached_config_maxconn }}"
 
 # Use <num> MB memory max to use for object storage; the default is 64
-# megabytes.
+# megabytes
 CACHESIZE="{{ memcached_config_cachesize }}"
 
-# Extra options.
+# Extra options
 OPTIONS="{% for item in memcached_config_options %}{{ item }} {% endfor %}"

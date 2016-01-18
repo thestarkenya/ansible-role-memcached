@@ -14,13 +14,13 @@ Available variables are listed below, along with default values (see `defaults/m
 
 ```yaml
 memcached_config_use_template: true
-# Listen on TCP port <num>.
+# Listen on TCP port <num>
 memcached_config_port: 11211
-# Use <num> MB memory max to use for object storage.
+# Use <num> MB memory max to use for object storage
 memcached_config_cachesize: 64
-# Use <num> max simultaneous connections.
+# Use <num> max simultaneous connections
 memcached_config_maxconn: 1024
-# Extra options.
+# Extra options
 memcached_config_options: []
 ```
 
